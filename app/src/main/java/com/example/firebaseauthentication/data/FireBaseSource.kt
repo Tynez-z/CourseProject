@@ -1,5 +1,6 @@
 package com.example.firebaseauthentication.data
 
+import com.example.firebaseauthentication.utils.USERS
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import javax.inject.Inject
@@ -15,8 +16,8 @@ class FireBaseSource @Inject constructor(
         firebaseAuth.signInWithEmailAndPassword(email, password)
 //TODO constants
     fun saveUser(email: String, name: String) =
-        fireStore.collection("users").document(email).set(User(email = email, fullName = name))
+    fireStore.collection(USERS).document(email).set(User(email = email, fullName = name))
 
-    fun fetchUser() = fireStore.collection("users").get()
+    fun fetchUser() = fireStore.collection(USERS).get()
     fun sendForgotPassword(email: String) = firebaseAuth.sendPasswordResetEmail(email)
 }
