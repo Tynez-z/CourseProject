@@ -6,5 +6,5 @@ import javax.inject.Singleton
 
 @Singleton
 class SendForgotPasswordUseCase @Inject constructor(val registerRepository: RegisterRepository) {
-    suspend fun execute(email: String) = registerRepository.sendForgotPassword(email)
+    suspend fun sendForgotPassword(email: String) = registerRepository.sendForgotPassword(email)
 }

@@ -6,5 +6,5 @@ import javax.inject.Singleton
 
 @Singleton
 class SignUpUserUseCase @Inject constructor(private val registerRepository: RegisterRepository) {
-    suspend fun execute(email: String, password: String, fullName: String) = registerRepository.signUpUser(email, password, fullName)
+    suspend fun signUpUser(email: String, password: String, fullName: String) = registerRepository.signUpUser(email, password, fullName)
 }

@@ -37,7 +37,7 @@ class SignUpViewModel @Inject constructor(
                 firebaseAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener {
                     if (it.result?.signInMethods?.size == 0) {
                         viewModelScope.launch {
-                            signUpUserUseCase.execute(email, password, fullName)
+                            signUpUserUseCase.signUpUser(email, password, fullName)
                                 .addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
                                         firebaseAuth.currentUser?.sendEmailVerification()
@@ -64,7 +64,7 @@ class SignUpViewModel @Inject constructor(
 
     fun saveUser(email: String, name: String) {
         viewModelScope.launch {
-            saveUserUseCase.execute(email, name).addOnCompleteListener {
+            saveUserUseCase.saveUser(email, name).addOnCompleteListener {
                 if (it.isSuccessful) {
                     saveUserLiveData.postValue(Resource.success(User(email, name)))
                 } else {

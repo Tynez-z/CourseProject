@@ -6,5 +6,5 @@ import javax.inject.Singleton
 
 @Singleton
 class FetchUserUseCase @Inject constructor(private val registerRepository: RegisterRepository) {
-    suspend fun execute() = registerRepository.fetchUser()
+    suspend fun fetchUser() = registerRepository.fetchUser()
 }

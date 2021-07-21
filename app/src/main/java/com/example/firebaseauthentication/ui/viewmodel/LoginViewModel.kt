@@ -39,13 +39,13 @@ class LoginViewModel @Inject constructor(
                         userLiveData.postValue(Resource.error(null, "Email does not exist"))
                     } else {
                         viewModelScope.launch {
-                            signInUserUseCase.execute(email, password)
+                            signInUserUseCase.signInUser(email, password)
                                 .addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
                                         firebaseAuth.currentUser?.isEmailVerified?.let { verified ->
                                             if (verified) {
                                                 viewModelScope.launch {
-                                                    fetchUserUseCase.execute()
+                                                    fetchUserUseCase.fetchUser()
                                                         .addOnCompleteListener { userTask ->
                                                             if (userTask.isSuccessful) {
                                                                 userTask.result?.documents?.forEach {
@@ -85,7 +85,7 @@ class LoginViewModel @Inject constructor(
             }
             networkControl.isConnected() -> {
                 viewModelScope.launch {
-                    sendForgotPasswordUseCase.execute(email).addOnCompleteListener { task ->
+                    sendForgotPasswordUseCase.sendForgotPassword(email).addOnCompleteListener { task ->
                         sendResetPasswordLiveData.postValue(Resource.loading(null))
                         if (task.isSuccessful) {
                             sendResetPasswordLiveData.postValue(Resource.success(User()))

@@ -15,5 +15,7 @@
     <string name="sign_in_btn">sign in</string>
     <string name="already_have_an_account_login">Already Have an account? Login</string>
     <string name="imglogo">imgLogo</string>
+    <string name="loading">…</string>
+
 
 </resources>

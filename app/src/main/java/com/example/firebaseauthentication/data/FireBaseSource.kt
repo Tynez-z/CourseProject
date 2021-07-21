@@ -14,7 +14,7 @@ class FireBaseSource @Inject constructor(
 
     fun signInUser(email: String, password: String) =
         firebaseAuth.signInWithEmailAndPassword(email, password)
-//TODO constants
+
     fun saveUser(email: String, name: String) =
     fireStore.collection(USERS).document(email).set(User(email = email, fullName = name))
 

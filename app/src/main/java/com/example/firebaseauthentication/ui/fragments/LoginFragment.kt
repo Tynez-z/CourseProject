@@ -13,6 +13,8 @@ import com.example.firebaseauthentication.R
 import com.example.firebaseauthentication.data.Status
 import com.example.firebaseauthentication.databinding.FragmentLoginBinding
 import com.example.firebaseauthentication.ui.viewmodel.LoginViewModel
+import com.example.firebaseauthentication.utils.LOADING
+import com.example.firebaseauthentication.utils.LOGIN_SUCCESSFUL
 import com.example.firebaseauthentication.utils.showSnackBar
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
@@ -47,10 +49,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             ).observe(viewLifecycleOwner, {
                 when (it.status) {
                     Status.LOADING -> {
-                        view.showSnackBar("...")
+                        view.showSnackBar(LOADING)
                     }
                     Status.SUCCESS -> {
-                        view.showSnackBar("Login successful")
+                        view.showSnackBar(LOGIN_SUCCESSFUL)
                         if (findNavController().currentDestination?.id == R.id.loginFragment) {
                             NavHostFragment.findNavController(this)
                                 .navigate(LoginFragmentDirections.actionLoginFragmentToDashBoardFragment(
