@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="baseFragment"
+            type="com.example.firebaseauthentication.presentation.fragments.BaseFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tvGoogleSignIn"
+            style="@style/tvStyleGreyBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> baseFragment.onCLickSignInGoogle()}"
+            android:text="@string/sign_in_with_google"
+            app:layout_constraintStart_toEndOf="@id/ivGoogle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivGoogle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search"
+            app:layout_constraintEnd_toStartOf="@id/tvGoogleSignIn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/iconGoogle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

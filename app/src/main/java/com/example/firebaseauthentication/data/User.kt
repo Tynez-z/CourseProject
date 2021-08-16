@@ -1,8 +1,6 @@
 package com.example.firebaseauthentication.data
 
-data class User(val email: String = "", val fullName: String = "", val type: TYPE = TYPE.PATIENT) {
+import com.example.firebaseauthentication.utils.EMPTY_STRING
 
-    enum class TYPE {
-        PATIENT
-    }
+data class User(val email: String = EMPTY_STRING, val fullName: String = EMPTY_STRING) {
 }

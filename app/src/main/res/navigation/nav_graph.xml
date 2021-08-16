@@ -7,45 +7,65 @@
 
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.example.firebaseauthentication.ui.fragments.SplashScreenFragment"
-        android:label="SplashScreenFragment">
+        android:name="com.example.firebaseauthentication.presentation.fragments.login.SplashScreenFragment"
+        android:label="SplashScreenFragment"
+        tools:layout="@layout/fragment_splash_screen">
         <action
             android:id="@+id/action_splashScreenFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/dashBoardFragment"
-        android:name="com.example.firebaseauthentication.ui.fragments.DashBoardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard">
-        <argument
-            android:name="name"
-            app:argType="string"
-            android:defaultValue="user" />
-    </fragment>
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.firebaseauthentication.ui.fragments.LoginFragment"
+        android:name="com.example.firebaseauthentication.presentation.fragments.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_dashBoardFragment"
-            app:destination="@id/dashBoardFragment" />
+            android:id="@+id/action_loginFragment_to_moviesFragment"
+            app:destination="@id/moviesFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.firebaseauthentication.ui.fragments.SignUpFragment"
+        android:name="com.example.firebaseauthentication.presentation.fragments.login.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+                <action
+            android:id="@+id/action_signUpFragment_to_moviesFragment"
+            app:destination="@id/moviesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.example.firebaseauthentication.presentation.fragments.movies.ArticleFragment"
+        android:label="ArticleFragment" >
+        <argument
+            android:name="result"
+            app:argType="com.example.firebaseauthentication.domain.entity.Result" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="com.example.firebaseauthentication.presentation.fragments.movies.MoviesFragment"
+        android:label="MoviesFragment"
+        tools:layout="@layout/fragment_movies">
         <action
-            android:id="@+id/action_signUpFragment_to_dashBoardFragment"
-            app:destination="@id/dashBoardFragment" />
+            android:id="@+id/action_moviesFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedMoviesFragment"
+        android:name="com.example.firebaseauthentication.presentation.fragments.movies.SavedMoviesFragment"
+        android:label="SavedMoviesFragment" >
+        <action
+            android:id="@+id/action_savedMoviesFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
     </fragment>
 </navigation>

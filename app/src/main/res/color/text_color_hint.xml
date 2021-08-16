@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:alpha="0.5" android:color="@color/white" android:state_enabled="false"/>
-    <item android:alpha="0.5" android:color="@color/white"/>
+
+    <item android:alpha="4.5" android:color="#e50a0a" android:state_enabled="false"/>
+
+    <item android:alpha="4.5" android:color="#DFD9D9"/>  <!-- unfocused -->
+
+
+<!--    <item android:alpha="0.5" android:color="#4DFFFFFF" android:state_hovered="true"/>-->
+<!--    <item android:alpha="0.5" android:color="@color/white" android:state_hovered="false"/>-->
+
+
+<!--    <item android:alpha="4.5" android:color="#4DFFFFFF" android:state_enabled="false"/>-->
+<!--    <item android:alpha="4.5" android:color="@color/white" android:state_enabled="true"/>-->
+
+
+<!--    <item android:alpha="4.5" android:color="#4DFFFFFF"/>  &lt;!&ndash; unfocused &ndash;&gt;-->
+<!--    <item android:alpha="4.5" android:color="@color/white"/>  &lt;!&ndash; focused &ndash;&gt;-->
+
+<!--    <item android:state_checked="true" android:color = "#4DFFFFFF" />-->
+<!--    <item android:state_checked="false" android:color = "@color/white" />-->
+
+
 </selector>

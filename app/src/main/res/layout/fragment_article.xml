@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="movie"
+            type="com.example.firebaseauthentication.domain.entity.Result" />
+        <variable
+            name="articleFragment"
+            type="com.example.firebaseauthentication.presentation.fragments.movies.ArticleFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivBackdrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.4"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:poster="@{movie.backdropPath}"
+            app:shapeAppearanceOverlay="@style/roundImgView" />
+
+        <TextView
+            android:id="@+id/tvDescribeArticle"
+            style="@style/tvStyleDescribe"
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_marginEnd="@dimen/margin_10dp"
+            android:layout_marginBottom="@dimen/margin_20dp"
+            android:alpha="0.9"
+            android:fontFamily="monospace"
+            android:text="@{movie.overview}"
+            app:layout_constraintBottom_toTopOf="@+id/btnFabSaveMovie"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnFabSaveMovie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_40dp"
+            android:layout_marginBottom="@dimen/margin_50dp"
+            android:contentDescription="@string/icon_save_movie"
+            android:onClick="@{(view) -> articleFragment.saveMovies()}"
+            android:src="@drawable/ic_downarrow"
+            app:backgroundTint="@color/background_menu"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/btn_sign_in"
+            app:tint="@color/color_item_text_menu" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
