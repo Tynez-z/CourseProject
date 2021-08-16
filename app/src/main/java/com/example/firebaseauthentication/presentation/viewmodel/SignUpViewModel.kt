@@ -39,12 +39,13 @@ class SignUpViewModel @Inject constructor(
             TextUtils.isEmpty(fullName) -> {
                 userLiveData.postValue(Resource.error(null, FIELD_MUST_FILL))
             }
-            password.length < 8 -> {
+            password.length < 8 -> { //TODO use constants
                 userLiveData.postValue(Resource.error(null, CONDITION_PASSWORD))
             }
             networkControl.isConnected() -> {
                 userLiveData.postValue(Resource.loading(null))
                 firebaseAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener {
+                    //TODO use constants
                     if (it.result?.signInMethods?.size == 0) {
                         viewModelScope.launch {
                             signUpUserUseCase.execute(email, password, fullName)

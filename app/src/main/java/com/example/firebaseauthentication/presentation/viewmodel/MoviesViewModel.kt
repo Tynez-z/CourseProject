@@ -26,6 +26,7 @@ class MoviesViewModel @Inject constructor(
             errorStateLiveData.postValue(ERROR)
             return@launch
         }
-        moviesNews.postValue(response.body()!!.results)
+
+        moviesNews.postValue(response.body()!!.results) //TODO make check (NPE)
     }
 }

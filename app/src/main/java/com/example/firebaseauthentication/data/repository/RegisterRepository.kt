@@ -11,6 +11,7 @@ interface RegisterRepository {
     suspend fun saveUser(email: String, name: String): Task<Void>
     suspend fun sendForgotPassword(email: String): Task<Void>
 
+    //TODO I don't understand work of this fun (comment)
     suspend fun fetchUser(): Task<QuerySnapshot>
     suspend fun signInWithGoogle(acct: GoogleSignInAccount) : Task<AuthResult>
 }

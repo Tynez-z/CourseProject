@@ -139,7 +139,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 //        val dialog = DialogForgotPassword(requireContext(),
 //            object : DialogForgotPassword.forgetPassword {
 //                override fun clickOnSend() {
-//                    viewModel.sendResetPassword(etEmailForgot?.text.toString()).observeForever {
+//                    viewModel.sendResetPassword(DialogForgotPassword().etEmailForgot?.text.toString()).observeForever {
 //                        if (it.status == Status.SUCCESS) {
 //                            view?.showSnackBar(RESET_EMAIL_SENT)
 //                        } else {

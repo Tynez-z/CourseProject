@@ -10,8 +10,8 @@ fun View.showSnackBar(message: String) {
 internal fun View.longSnackBar(message: Int, action: (Snackbar.() -> Unit)? = null) {
     val snackBar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
     snackBar.apply {
-        action?.let { snackBar.it() }
-        snackBar.show()
+        action?.let { it() }
+        show()
     }
 }
 

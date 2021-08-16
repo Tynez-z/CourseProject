@@ -29,14 +29,11 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
 
     @Inject
     lateinit var auth: FirebaseAuth
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         signUpBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         signUpBinding.setVariable(BR.signUpFragment, this)
         return signUpBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     fun onClickGoToLogin() {
@@ -47,26 +44,28 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
     }
 
     fun onCLickSignUp() {
-        viewModel.signUpUser(
-            signUpBinding.etEmailSignUp.text.toString(),
-            signUpBinding.etPasswordSignUp.text.toString(),
-            signUpBinding.etNameUser.text.toString()
-        ).observe(viewLifecycleOwner, {
-            when (it.status) {
-                Status.SUCCESS -> {
-                    viewModel.saveUser(
-                        it.data?.email.toString(),
-                        it.data?.fullName.toString()
-                    )
-                    view?.showSnackBar(USER_REGISTERED)
+        signUpBinding.apply {
+            viewModel.signUpUser(
+                signUpBinding.etEmailSignUp.text.toString(),
+                signUpBinding.etPasswordSignUp.text.toString(),
+                signUpBinding.etNameUser.text.toString()
+            ).observe(viewLifecycleOwner, {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        viewModel.saveUser(
+                            it.data?.email.toString(),
+                            it.data?.fullName.toString()
+                        )
+                        view?.showSnackBar(USER_REGISTERED)
+                    }
+                    Status.ERROR -> {
+                        view?.showSnackBar(it.message!!) //TODO add check NPE
+                    }
+                    Status.LOADING -> {
+                        view?.showSnackBar(LOADING)
+                    }
                 }
-                Status.ERROR -> {
-                    view?.showSnackBar(it.message!!)
-                }
-                Status.LOADING -> {
-                    view?.showSnackBar(LOADING)
-                }
-            }
-        })
+            })
+        }
     }
 }

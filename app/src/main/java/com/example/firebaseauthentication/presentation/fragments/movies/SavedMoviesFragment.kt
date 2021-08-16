@@ -21,6 +21,7 @@ class SavedMoviesFragment : BaseFragment(R.layout.fragment_saved_movies) {
 
     private lateinit var fragmentSavedMoviesBinding: FragmentSavedMoviesBinding
     private val moviesAdapter = MoviesAdapter()
+
     private val viewModel: SavedMoviesViewModel by lazy {
         viewModel {
             //TODO add logic in future (LifecycleOwner)

@@ -7,6 +7,7 @@ import com.example.firebaseauthentication.domain.entity.Result
 
 class MoviesLocalDataImpl(private val movieDao: MoviesInterface) : MoviesLocalDataSource {
 
+    //TODO rename (saved not get all)
     override fun getSavedMovies(): LiveData<List<Result>> =
         movieDao.getAllMovies()
 
