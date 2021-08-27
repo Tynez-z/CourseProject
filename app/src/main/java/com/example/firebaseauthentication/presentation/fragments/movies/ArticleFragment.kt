@@ -25,10 +25,13 @@ class ArticleFragment : BaseFragment(R.layout.fragment_article) {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragmentArticleBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        fragmentArticleBinding.apply {
-            setVariable(BR.articleFragment, this)
-            setVariable(BR.movie, args.result)
-        }
+//        fragmentArticleBinding.apply {
+//            setVariable(BR.movie, args.result)
+//            setVariable(BR.articleFragment,this)
+//        }
+
+        fragmentArticleBinding.setVariable(BR.articleFragment, this)
+        fragmentArticleBinding.setVariable(BR.movie, args.result)
         return fragmentArticleBinding.root
     }
 

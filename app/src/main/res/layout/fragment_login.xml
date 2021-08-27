@@ -24,6 +24,8 @@
             android:layout_marginTop="@dimen/margin_25dp"
             android:contentDescription="@string/imglogo"
             android:src="@drawable/ic_play_button"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

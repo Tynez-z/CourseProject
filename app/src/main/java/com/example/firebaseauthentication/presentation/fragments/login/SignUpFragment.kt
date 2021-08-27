@@ -1,5 +1,9 @@
 package com.example.firebaseauthentication.presentation.fragments.login
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +37,9 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         signUpBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         signUpBinding.setVariable(BR.signUpFragment, this)
+
+        createChannel(getString(R.string.channel_id), getString(R.string.channel_name))
+
         return signUpBinding.root
     }
 
@@ -66,6 +73,26 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up) {
                     }
                 }
             })
+        }
+    }
+
+    private fun createChannel(channelId: String, channelName: String) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationChannel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_LOW
+            )
+
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.RED
+            notificationChannel.enableVibration(true)
+            notificationChannel.description = "Time for notification"
+
+            val notificationManager = requireActivity().getSystemService(
+                NotificationManager::class.java
+            )
+            notificationManager.createNotificationChannel(notificationChannel)
         }
     }
 }

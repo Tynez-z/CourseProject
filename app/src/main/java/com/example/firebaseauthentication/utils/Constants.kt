@@ -26,3 +26,9 @@ const val EMAIL_EXIST = "Email already exist"
 const val EMPTY_STRING = ""
 const val RC_SIGN_IN = 123
 const val COULD_NOT_SIGN_IN = "Couldn't sign in user"
+
+const val CHANNEL_ID = 123
+const val SKIP_ID = "SKIP ID"
+
+
+const val NOTIFICATION_ID = 123

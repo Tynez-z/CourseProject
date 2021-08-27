@@ -16,20 +16,18 @@
 
         <ImageView
             android:id="@+id/ivProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_40dp"
+            android:layout_height="@dimen/size_40dp"
             android:layout_marginStart="@dimen/margin_25dp"
             android:layout_marginTop="@dimen/margin_20dp"
-            android:background="@drawable/design_img_profile"
             android:contentDescription="@string/icon_profile"
-            android:padding="@dimen/padding_20dp"
-            android:src="@drawable/ic_userimage"
+            android:src="@drawable/ic_play_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- TODO rename -->
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/ivLogOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_20dp"
@@ -39,7 +37,8 @@
             android:src="@drawable/ic_logoutt"
             app:layout_constraintBottom_toTopOf="@id/rvMovies"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/iconlogout" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNameUser"
@@ -68,7 +67,7 @@
             android:id="@+id/rvMovies"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0dp"
-            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_20dp"
             android:orientation="vertical"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -77,5 +76,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivProfile"
             app:spanCount="2" />
+
+<!--        <View-->
+<!--            android:id="@+id/vSpace"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/size_60dp"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:visibility="invisible"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/rvMovies"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <color name="colorPrimary">#FF3BB3C2</color>
     <color name="colorPrimaryDark">#3BB3C2</color>
     <color name="colorAccent">#3BB3C2</color>
@@ -20,5 +19,4 @@
     <color name="color_item_text_menu">#9B9AAC</color>
     <color name="text">#DDDDE3</color>
     <color name="background_line_divider">#C4C4C4</color>
-
 </resources>

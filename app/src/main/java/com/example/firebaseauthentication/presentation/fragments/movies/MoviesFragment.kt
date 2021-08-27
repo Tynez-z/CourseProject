@@ -79,7 +79,6 @@ class MoviesFragment : BaseFragment(R.layout.fragment_movies) {
     }
 
     fun onClickGoBack() {
-
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
         val googleSignInClient = GoogleSignIn.getClient(context!!, gso)
         googleSignInClient.signOut()

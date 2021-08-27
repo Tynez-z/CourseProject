@@ -17,7 +17,7 @@
     <string name="imglogo">imgLogo</string>
     <string name="loading">…</string>
     <string name="movies">Movies</string>
-    <string name="saved_movies">Saved Movies</string>
+    <string name="saved_movies">Bookmarks</string>
     <string name="icon_save_movie">icon save movie</string>
     <string name="undo">Undo</string>
     <string name="movie_deleted">"Successfully deleted"</string>
@@ -37,8 +37,8 @@
     <string name="comment">comments</string>
 
     <string name="title_notification">Notification</string>
-    <string name="message">WOW!!!</string>
-
+    <string name="message">Notification is work</string>
+    <string name="iconlogout">iconLogOut</string>
 
 
 </resources>

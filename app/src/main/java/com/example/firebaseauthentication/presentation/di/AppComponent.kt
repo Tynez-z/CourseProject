@@ -14,7 +14,7 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class, FireBaseModule::class, ViewModelModule::class, LocalModule::class, RemoteModule::class])
 
 interface AppComponent {
-    fun inject(loginFragment: LoginFragment)
+//    fun inject(loginFragment: LoginFragment)
     fun inject(signUpFragment: SignUpFragment)
     fun inject(baseFragment: BaseFragment)
     fun inject(moviesFragment: MoviesFragment)

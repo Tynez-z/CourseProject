@@ -2,7 +2,11 @@ package com.example.firebaseauthentication.presentation.fragments.login
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,14 +23,11 @@ import com.example.firebaseauthentication.R
 import com.example.firebaseauthentication.data.Status
 import com.example.firebaseauthentication.databinding.FragmentLoginBinding
 import com.example.firebaseauthentication.presentation.fragments.BaseFragment
-import com.example.firebaseauthentication.presentation.fragments.DialogForgotPassword
 import com.example.firebaseauthentication.presentation.viewmodel.LoginViewModel
 import com.example.firebaseauthentication.utils.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
-import kotlinx.android.synthetic.main.forgot_password.*
-import javax.inject.Inject
+import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
@@ -41,7 +42,11 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         App.appComponent.inject(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         loginBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         loginBinding.setVariable(BR.loginFragment, this)
         return loginBinding.root
@@ -50,6 +55,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        ivLogoLogin.setOnClickListener {
+            createChannel(getString(R.string.channel_id), getString(R.string.channel_name))
+        }
 //        dialog()
 
 //        //TODO use single fragment with interface
@@ -155,4 +163,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 //            dialog.showDialog()
 //        }
 //    }
+
+    private fun createChannel(channelID: String, channelName: String) {
+        val notificationManager = requireContext().getSystemService(NotificationManager::class.java)
+        notificationManager.sendNotification(getString(R.string.message), requireContext())
+    }
 }

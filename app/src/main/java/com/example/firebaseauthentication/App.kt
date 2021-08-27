@@ -2,6 +2,7 @@ package com.example.firebaseauthentication
 
 import android.app.Application
 import com.example.firebaseauthentication.presentation.di.*
+import com.example.firebaseauthentication.utils.createNotificationsChanel
 
 class App : Application() {
 
@@ -22,5 +23,7 @@ class App : Application() {
             .remoteModule(RemoteModule())
             .fireBaseModule(FireBaseModule())
             .build()
+
+        createNotificationsChanel()
     }
 }

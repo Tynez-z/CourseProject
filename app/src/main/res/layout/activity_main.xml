@@ -3,16 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:context="com.example.firebaseauthentication.MainActivity">-->
+
+<!--        <androidx.fragment.app.FragmentContainerView-->
+<!--            android:id="@+id/navHostFragment"-->
+<!--            android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:defaultNavHost="true"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:navGraph="@navigation/nav_graph" />-->
+
+<!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--            android:id="@+id/bottomNavigationView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/size_56dp"-->
+<!--            android:alpha="0.8"-->
+<!--            android:foregroundGravity="center"-->
+<!--            app:backgroundTint="@color/background_menu"-->
+<!--            app:itemIconTint="@drawable/style_icon_item"-->
+<!--            app:itemRippleColor="@color/invisible"-->
+<!--            app:itemTextColor="@drawable/style_icon_item_text"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:menu="@menu/bottom_navigation_menu" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.firebaseauthentication.MainActivity">
+        android:layout_height="match_parent">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/navHostFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_0dp"
+            android:layout_height="match_parent"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +54,8 @@
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_56dp"
+            android:alpha="0.8"
+            android:layout_gravity="bottom"
             android:foregroundGravity="center"
             app:backgroundTint="@color/background_menu"
             app:itemIconTint="@drawable/style_icon_item"
@@ -34,5 +66,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/navHostFragment"
             app:menu="@menu/bottom_navigation_menu" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </layout>
