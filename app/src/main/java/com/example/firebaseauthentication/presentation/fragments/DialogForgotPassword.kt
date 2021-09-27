@@ -9,15 +9,12 @@ import kotlinx.android.synthetic.main.forgot_password.*
 
 class DialogForgotPassword constructor(
     private val requireContext: Context,
-//    val activity: FragmentActivity,
-    private var eventClick: forgetPassword? = null
+    private var eventClick: ForgetPassword? = null
 ) {
 
     fun showDialog() {
-//        activity ?: return
 
         val dialog = Dialog(requireContext)
-//        val dialog = Dialog(activity)
         dialog.apply {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             setCancelable(true)
@@ -25,8 +22,7 @@ class DialogForgotPassword constructor(
             setCanceledOnTouchOutside(true)
             window?.setLayout(
                 Constraints.LayoutParams.MATCH_PARENT,
-                Constraints.LayoutParams.WRAP_CONTENT
-            )
+                Constraints.LayoutParams.WRAP_CONTENT)
             show()
         }
 
@@ -36,12 +32,12 @@ class DialogForgotPassword constructor(
         }
 
         dialog.btnSendEmail.setOnClickListener {
-            eventClick?.clickOnSend()
+            eventClick?.clickOnSend(dialog.etEmailForgot.text.toString())
         }
     }
 
-    interface forgetPassword {
+    interface ForgetPassword {
         fun clickOnDismiss()
-        fun clickOnSend()
+        fun clickOnSend(email: String)
     }
 }

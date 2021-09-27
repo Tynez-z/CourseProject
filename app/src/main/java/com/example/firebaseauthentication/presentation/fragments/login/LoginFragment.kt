@@ -4,10 +4,12 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.firebaseauthentication.App
@@ -23,6 +26,7 @@ import com.example.firebaseauthentication.R
 import com.example.firebaseauthentication.data.Status
 import com.example.firebaseauthentication.databinding.FragmentLoginBinding
 import com.example.firebaseauthentication.presentation.fragments.BaseFragment
+import com.example.firebaseauthentication.presentation.fragments.DialogForgotPassword
 import com.example.firebaseauthentication.presentation.viewmodel.LoginViewModel
 import com.example.firebaseauthentication.utils.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -32,9 +36,9 @@ import kotlinx.android.synthetic.main.fragment_login.*
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     private val viewModel: LoginViewModel by lazy {
-        viewModel {
-        }
+        viewModel {}
     }
+
     lateinit var loginBinding: FragmentLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,11 +46,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         App.appComponent.inject(this)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         loginBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         loginBinding.setVariable(BR.loginFragment, this)
         return loginBinding.root
@@ -58,42 +58,41 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         ivLogoLogin.setOnClickListener {
             createChannel(getString(R.string.channel_id), getString(R.string.channel_name))
         }
-//        dialog()
+        dialog()
 
-//        //TODO use single fragment with interface
+//        TODO use single fragment with interface
         //forget password
-        val dialog = AlertDialog.Builder(requireContext())
-        val inflater = (requireActivity()).layoutInflater
-        val v = inflater.inflate(R.layout.forgot_password, null)
-        dialog.setView(v).setCancelable(false)
-        val d = dialog.create()
-        val sendBtn = v.findViewById<AppCompatButton>(R.id.btnSendEmail)
-        val dismissBtn = v.findViewById<AppCompatButton>(R.id.btnDismiss)
-        val etEmailForgot = v.findViewById<EditText>(R.id.etEmailForgot)
-
-        sendBtn.setOnClickListener {
-            viewModel.sendResetPassword(etEmailForgot.text.toString()).observeForever {
-                if (it.status == Status.SUCCESS) {
-                    view.showSnackBar(RESET_EMAIL_SENT)
-                } else {
-                    view.showSnackBar(it.message.toString())
-                }
-            }
-        }
-        dismissBtn.setOnClickListener {
-            d.dismiss()
-        }
-
-        loginBinding.tvForgotPassword.setOnClickListener {
-            d.show()
-        }
+//        val dialog = AlertDialog.Builder(requireContext())
+//        val inflater = (requireActivity()).layoutInflater
+//        val v = inflater.inflate(R.layout.forgot_password, null)
+//        dialog.setView(v).setCancelable(false)
+//        val d = dialog.create()
+//        val sendBtn = v.findViewById<AppCompatButton>(R.id.btnSendEmail)
+//        val dismissBtn = v.findViewById<AppCompatButton>(R.id.btnDismiss)
+//        val etEmailForgot = v.findViewById<EditText>(R.id.etEmailForgot)
+//
+//        sendBtn.setOnClickListener {
+//            viewModel.sendResetPassword(etEmailForgot.text.toString()).observeForever {
+//                if (it.status == Status.SUCCESS) {
+//                    view.showSnackBar(RESET_EMAIL_SENT)
+//                } else {
+//                    view.showSnackBar(it.message.toString())
+//                }
+//            }
+//        }
+//        dismissBtn.setOnClickListener {
+//            d.dismiss()
+//        }
+//
+//        loginBinding.tvForgotPassword.setOnClickListener {
+//            d.show()
+//        }
     }
 
     fun onClickSignIn() {
         viewModel.signInUser(
             loginBinding.etEmailLogin.text.toString(),
-            loginBinding.etPasswordLogin.text.toString()
-        ).observe(viewLifecycleOwner, {
+            loginBinding.etPasswordLogin.text.toString()).observe(viewLifecycleOwner, {
             when (it.status) {
                 Status.LOADING -> {
                     view?.showSnackBar(LOADING)
@@ -101,14 +100,8 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 Status.SUCCESS -> {
                     view?.showSnackBar(LOGIN_SUCCESSFUL)
                     if (findNavController().currentDestination?.id == R.id.loginFragment) {
-                        NavHostFragment.findNavController(this)
-                            .navigate(
-                                LoginFragmentDirections.actionLoginFragmentToMoviesFragment(
-                                    it.data?.fullName!!
-                                )
-                            )
-                    }
-                }
+                        NavHostFragment.findNavController(this).navigate(LoginFragmentDirections.actionLoginFragmentToMoviesFragment(
+                                    it.data?.fullName!!)) } }
                 Status.ERROR -> {
                     view?.showSnackBar(it.message!!)
                 }
@@ -143,26 +136,27 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         }
     }
 
-//    fun dialog() {
-//        val dialog = DialogForgotPassword(requireContext(),
-//            object : DialogForgotPassword.forgetPassword {
-//                override fun clickOnSend() {
-//                    viewModel.sendResetPassword(DialogForgotPassword().etEmailForgot?.text.toString()).observeForever {
-//                        if (it.status == Status.SUCCESS) {
-//                            view?.showSnackBar(RESET_EMAIL_SENT)
-//                        } else {
-//                            view?.showSnackBar(it.message.toString())
-//                        }
-//                    }
-//                }
-//
-//                override fun clickOnDismiss() {
-//                }
-//            })
-//        loginBinding.tvForgotPassword.setOnClickListener {
-//            dialog.showDialog()
-//        }
-//    }
+    private fun dialog() {
+            val dialog = DialogForgotPassword(requireContext(),
+                object : DialogForgotPassword.ForgetPassword {
+                    override fun clickOnSend(email: String) {
+                        viewModel.sendResetPassword(email).observeForever {
+
+                            Log.i("TAGClickOnSend", email)
+
+                            if (it.status == Status.SUCCESS) {
+                                view?.showSnackBar(RESET_EMAIL_SENT)
+                            } else {
+                                view?.showSnackBar(it.message.toString())
+                            }
+                        }
+                    }
+                    override fun clickOnDismiss() {}
+                })
+            loginBinding.tvForgotPassword.setOnClickListener {
+                dialog.showDialog()
+            }
+    }
 
     private fun createChannel(channelID: String, channelName: String) {
         val notificationManager = requireContext().getSystemService(NotificationManager::class.java)

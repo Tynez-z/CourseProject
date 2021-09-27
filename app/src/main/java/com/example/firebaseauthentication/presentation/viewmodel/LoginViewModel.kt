@@ -87,10 +87,9 @@ class LoginViewModel @Inject constructor(
     }
 
     fun sendResetPassword(email: String): LiveData<Resource<User>> {
-        Log.d("TAG", email.toString())
+        Log.i("TAG", email.toString())
         if (TextUtils.isEmpty(email)) {
-            sendResetPasswordLiveData.postValue(
-                Resource.error(null, ENTER_REGISTERED_EMAIL))
+            sendResetPasswordLiveData.postValue(Resource.error(null, ENTER_REGISTERED_EMAIL))
         }
         when {
             networkControl.isConnected() -> {
